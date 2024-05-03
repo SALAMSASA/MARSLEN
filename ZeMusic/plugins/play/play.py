@@ -27,7 +27,7 @@ from config import BANNED_USERS, lyrical
 force_btn = InlineKeyboardMarkup(
     [
         [
-            InlineKeyboardButton(   
+           from pyrogram.types import InlineKeyboardButton(   
               text=f"اضغط للأشتراك .", url=f"t.me/L_Q7I",)                        
         ],        
     ]
