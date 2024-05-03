@@ -23,6 +23,7 @@ from ZeMusic.utils.inline import (
 from ZeMusic.utils.logger import play_logs
 from ZeMusic.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical
+from pyrogram.types import InlineKeyboardButton
 
 force_btn = InlineKeyboardMarkup(
     [
