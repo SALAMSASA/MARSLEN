@@ -131,5 +131,5 @@ async def restart_(_, message):
         shutil.rmtree("cache")
     except:
         pass
-    await response.edit_text("ᯓ ⌯ 𝚂𝙾𝚄𝚁𝙲𝙴 𝙺𝙸𝙽𝙶 🝢 إعــادة التشغيــل\n•─────────────────•\n\n•⎆┊يتـم الان اعـادة تشغيـل بـوت ميوزك\n•⎆┊قـد يستغـرق الامـر 3-5 دقائـق...")
+    await response.edit_text("𝐋𝐈𝐓𝐇𝐎𝐍 إعــادة التشغيــل\n•─────────────────•\n\n•⎆┊يتـم الان اعـادة تشغيـل بـوت ميوزك\n•⎆┊قـد يستغـرق الامـر 3-5 دقائـق...")
     os.system(f"kill -9 {os.getpid()} && bash start")
