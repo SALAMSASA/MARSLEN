@@ -36,7 +36,7 @@ async def huhh(client: Client, message: Message):
                          name, url=f"https://t.me/{usrnam}"), 
                  ],[
                    InlineKeyboardButton(
-                        "•✯ 𝚂𝙾𝚄𝚁𝙲𝙴 𝙺𝙸𝙽𝙶 ✯•", url=f"https://t.me/EF_19"),
+                        "•✯ 𝚂𝙾𝚄𝚁𝙲𝙴 𝐋𝐈𝐓𝐇𝐎𝐍 ✯•", url=f"https://t.me/A1DIIU"),
                 ],
 
             ]
