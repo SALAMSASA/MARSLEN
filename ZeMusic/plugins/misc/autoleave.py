@@ -11,7 +11,7 @@ from ZeMusic.utils.database import get_client, is_active_chat, is_autoend
 
 async def auto_leave():
     if config.AUTO_LEAVING_ASSISTANT:
-        while not await asyncio.sleep(900):
+        while not await asyncio.sleep(1500):
             from ZeMusic.core.userbot import assistants
 
             for num in assistants:
@@ -26,8 +26,8 @@ async def auto_leave():
                         ]:
                             if (
                                 i.chat.id != config.LOGGER_ID
-                                and i.chat.id != -1001565463580
-                                and i.chat.id != -1001565463580
+                                and i.chat.id != -1002051286023
+                                and i.chat.id != -1002051465499
                             ):
                                 if left == 20:
                                     continue
@@ -42,4 +42,3 @@ async def auto_leave():
 
 
 asyncio.create_task(auto_leave())
-
