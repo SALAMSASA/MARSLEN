@@ -19,7 +19,7 @@ async def must_join_channel(app: Client, msg: Message):
                 chat_info = await app.get_chat(Muntazer)
                 link = chat_info.invite_link
             try:
-                await msg.reply(
+                await msg.reply
                     f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @L_Q7I.",
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup
