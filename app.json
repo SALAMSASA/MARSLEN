@@ -24,6 +24,11 @@
         "value": "986cb4ba434870a62fe96da3b5f6d411",
         "required": true
       },
+      "BOT_NAME": {
+        "description": "اسم البوت بالعربي.",
+        "value": "",
+        "required": true
+      },
       "BOT_TOKEN": {
         "description": "ضع هنا تكون البوت الذي صنعته من @BotFather.",
         "value": "",
@@ -35,7 +40,7 @@
         "required": true
       },
       "MONGO_DB_URI": {
-        "description": "لا تغيره. او قم بانشاء قاعده البيانات. الشرح .",
+        "description": "لا تغيره. او قم بانشاء قاعده البيانات. الشرح.",
         "value": "mongodb+srv://abood:king@cluster0.rbp1cqz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
         "required": true
       },
@@ -66,13 +71,18 @@
         "required": true
       },
       "CHANNEL_LINK": {
-        "description": "رابط قناتك.",
-        "value": "https://t.me/A1DIIU",
+        "description": "يوزر قناتك بدون @.",
+        "value": "A1DIIU",
         "required": true
       },
+      "AUTO_LEAVING_ASSISTANT": {
+        "description": "اذا تريد ان يغادر الحساب المساعد بعد انتهاء المحادثه الصوتيه اكتب True .",
+        "value": "False",
+        "required": false
+      },
       "LOGGER_ID": {
-        "description": "ايدي مجموعة السجل الخاص بك.",
-        "value": "",
+        "description": "ادخل ايدي مجموعة السجل بجانب الرقم -100 فـي المربع〔 سوي مجموعة جديدة وروح لاعدادات المجموعة وخلي السجل ظاهر .. بعدها ارفع البوت والحساب المساعد إشـراف وافتـح المكالمه بعدها جيب ايدي المجموعة لهنا 〕.",
+        "value": "-100",
         "required": true
       }
     },
