@@ -24,7 +24,6 @@ async def must_join_channel(app: Client, msg: Message):
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup([
                         [InlineKeyboardButton((config.CHANNEL_NAME, url=f"https://t.me/L_Q7I")
-                    ])
                 )
                 await msg.stop_propagation()
             except ChatWriteForbidden:
