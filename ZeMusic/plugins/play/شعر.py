@@ -22,7 +22,7 @@ async def ihd(client: Client, message: Message):
                            )
 
 
-@app.on_message(command(["‹ قصيده ›","قصيده"]) & filters.private)
+@app.on_message(command([f"قصيده", "قصيده🎸", "ق", "{BOT_USERNAME} شعر"]))
 async def ihd(client: Client, message: Message):
     rl = random.randint(3,96)
     url = f"https://t.me/QasedFaeder/{rl}"
