@@ -21,10 +21,10 @@ async def must_join_channel(app: Client, msg: Message):
             try:
                 await msg.reply
                   await message.reply_text(
-    f'❤️‍🩹┇عزيزي: {message.from_user.mention}\n🫀┇أشتࢪك في قناة البوت أولاً.\n🚧┇قناة البوت: @L_Q7I 🫂',
-    reply_markup=force_btn,
-    disable_web_page_preview=False
-)
+                    f'❤️‍🩹┇عزيزي: {message.from_user.mention}\n🫀┇أشتࢪك في قناة البوت أولاً.\n🚧┇قناة البوت: @L_Q7I 🫂',
+                      reply_markup=force_btn,
+                        disable_web_page_preview=False
+                 )
                     disable_web_page_preview=True,
                     reply_markup=InlineKeyboardMarkup
                         [InlineKeyboardButton(config.CHANNEL_NAME, url=f"https://t.me/L_Q7I")]
