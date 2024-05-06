@@ -155,3 +155,20 @@ async def ihd(client: Client, message: Message):
             ]
         )
     )
+
+
+@app.on_message(command(["‹ قصيده ›","قصيده"]) & filters.private)
+async def ihd(client: Client, message: Message):
+    rl = random.randint(2,50)
+    url = f"https://t.me/QasedFaeder/{rl}"
+    await client.send_photo(message.chat.id,url,caption="↯ : تم اختيار قصيده اليك",
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text=config.CHANNEL_NAME, url=lnk)
+                ],
+            ]
+        )
+    )
+
