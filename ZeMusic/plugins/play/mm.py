@@ -22,7 +22,7 @@ async def must_join_channel(app: Client, msg: Message):
                 await msg.reply(
                     f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @L_Q7I.",
                     disable_web_page_preview=True,
-                    reply_markup=InlineKeyboardMarkup([
+                    reply_markup=InlineKeyboardMarkup(
                         [InlineKeyboardButton(config.CHANNEL_NAME, url=f"https://t.me/L_Q7I")]
                 await msg.stop_propagation()
             except ChatWriteForbidden:
