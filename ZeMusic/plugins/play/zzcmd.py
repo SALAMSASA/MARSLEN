@@ -26,14 +26,12 @@ async def zzzback(_, query: CallbackQuery):
                 ],[
                     InlineKeyboardButton(
                         "• اوامــر المطــور •", callback_data="zzzdv"),
-                ],[
-                    InlineKeyboardButton(
-                        text=config.CHANNEL_NAME, url=lnk),
+               [InlineKeyboardButton
+                      (text=config.CHANNEL_NAME, url=lnk)],
                 ],
             ]
         ),
     )
-
 
 
 @app.on_callback_query(filters.regex("zzzdv") & SUDOERS)
