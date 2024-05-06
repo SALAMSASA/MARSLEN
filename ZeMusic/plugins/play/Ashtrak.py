@@ -25,7 +25,7 @@ async def command_handler(_: Client, message: Message):
         user_id = message.from_user.id
         user = message.from_user.first_name
         markup = Markup([
-            [Button(config.CHANNEL_NAME, url=f"https://t.me/{channel}")]
+            [Button(config.CHANNEL_NAME, url=f"https://t.me/L_Q7I)]
         ])
         await message.reply(
             f"◇ عذرًا عزيزي {user} ، عليك الاشتراك في قناة البوت أولاً.",
