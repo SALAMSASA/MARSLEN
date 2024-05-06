@@ -24,15 +24,14 @@ async def ihd(client: Client, message: Message):
 
 @app.on_message(command([f"قصيده", "قصيده🎸", "ق", "{BOT_USERNAME} قصيده"]))
 async def ihd(client: Client, message: Message):
-    rl = random.randint(3,96)
-    url = f"https://t.me/QasedFaeder/{rl}"
-    await client.send_photo(message.chat.id,url,caption="↯ : تم اختيار قصيده اليك",
+    rl = random.randint(8,20)
+    url = f"https://t.me/saresnx/{rl}"
+    await client.send_voice(message.chat.id,url,caption="🧚🏼‍♂️ ¦ تم أختياࢪ قصيده لك",
     reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        text=config.CHANNEL_NAME, url=lnk)
+                        message.from_user.first_name, url=f"https://t.me/{message.from_user.username}")
                 ],
             ]
         )
-    )
