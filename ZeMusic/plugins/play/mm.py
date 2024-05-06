@@ -19,15 +19,13 @@ async def must_join_channel(app: Client, msg: Message):
                 chat_info = await app.get_chat(Muntazer)
                 link = chat_info.invite_link
             try:
-                await msg.reply
-                  await message.reply_text(
-                    f'❤️‍🩹┇عزيزي: {message.from_user.mention}\n🫀┇أشتࢪك في قناة البوت أولاً.\n🚧┇قناة البوت: @L_Q7I 🫂',
-                      reply_markup=force_btn,
-                        disable_web_page_preview=False
-                 )
+                await msg.reply(
+                    f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
                     disable_web_page_preview=True,
-                    reply_markup=InlineKeyboardMarkup
-                        [InlineKeyboardButton(config.CHANNEL_NAME, url=f"https://t.me/L_Q7I")]
+                    reply_markup=InlineKeyboardMarkup([
+                        [InlineKeyboardButton(config.CHANNEL_NAME, url=link)]
+                    ])
+                )
                 await msg.stop_propagation()
             except ChatWriteForbidden:
                 pass
