@@ -1,37 +1,76 @@
 import asyncio
-from pyrogram import Client, filters
-from strings.filters import command
-from pyrogram.types import InlineKeyboardButton, CallbackQuery, InlineKeyboardMarkup, Message
-from typing import Union
-from pyrogram.types import InlineKeyboardButton
+import os
+from pyrogram.types import CallbackQuery
+from ZeMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
 from ZeMusic import app
+import requests
+import pyrogram
+from pyrogram import Client, emoji 
+from config import *
+from pyrogram import filters
+from strings.filters import command
 from ZeMusic.misc import HAPP, SUDOERS, XCB
 from config import OWNER_ID
-import config                                       
-                                       
-@app.on_callback_query(filters.regex("zzzback"))
-async def zzzback(_, query: CallbackQuery):
-   await query.edit_message_text(
-       f"""<b>» مرحبـاً بك عـزيـزي </b> .\n\n<b>» استخـدم الازرار بالاسفـل 𝄞\n» لـ تصفـح اوامـر الميـوزك 🥁</b>""",
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup
+from pyrogram.errors import MessageNotModified
+
+
+
+@app.on_message(
+    command("الاوامر")
+)
+async def cr_source(client: Client, message: Message):
+    await message.reply_video(
+      video=f"https://telegra.ph/file/0874626294377592ee42e.mp4",
+        caption=f"""<b>⭓𝙼𝚄𝚂𝙸𝙲✘𝐋𝐈𝐓𝐇𝐎𝐍♪\n<b>⍟ 𝚃𝙷𝙴 𝙱𝙴𝚂𝚃 𝚂𝙾𝚄𝚁𝙲𝙴 𝙾𝙽 𝚃𝙴𝙻𝙴𝙶𝚁𝙰𝙼</b>""",
         reply_markup=InlineKeyboardMarkup(
-            [
+                   [
                 [
                     InlineKeyboardButton(
-                        "• اوامــر التشغيــل •", callback_data="zzzll"),
+                        "اوامر التشغيل", callback_data="zzzll"),
+                    InlineKeyboardButton(
+                        "اوامر القنوات", callback_data="zzzch"),
                 ],[
+                    
                     InlineKeyboardButton(
-                        "• اوامـر القنـاة •", callback_data="zzzch"),
+                        "اوامر الادمن", callback_data="zzzad"),
+ 
                     InlineKeyboardButton(
-                        "• اوامـر الادمـن •", callback_data="zzzad"),
-                ],[
+                     " اوامــر المطــور ", callback_data="zzzdv"),
+                 ],[
                     InlineKeyboardButton(
-                        "• اوامــر المطــور •", callback_data="zzzdv"),
-               [InlineKeyboardButton
-                      (text=config.CHANNEL_NAME, url=lnk)],
+                        "•✯ ᯓ 「𝚂𝙾𝚞𝚁𝚂 VENOM」، ⦃𓏛 ✯•", url="https://t.me/K_o_c_3"),
                 ],
             ]
         ),
     )
+    
+@app.on_callback_query(filters.regex("zzzback"))
+async def zzzback(_, query: CallbackQuery):
+   await query.edit_message_text(
+       f"""<b>⭓𝙼𝚄𝚂𝙸𝙲✘𝐋𝐈𝐓𝐇𝐎𝐍♪\n<b>⍟ 𝚃𝙷𝙴 𝙱𝙴𝚂𝚃 𝚂𝙾𝚄𝚁𝙲𝙴 𝙾𝙽 𝚃𝙴𝙻𝙴𝙶𝚁𝙰𝙼""",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        "اوامر التشغيل", callback_data="zzzll"),
+                    InlineKeyboardButton(
+                        "اوامر القنوات", callback_data="zzzch"),
+                ],[
+                    
+                    InlineKeyboardButton(
+                        "اوامر الادمن", callback_data="zzzad"),
+
+                    InlineKeyboardButton(
+                            " اوامــر المطــور ", callback_data="zzzdv"),
+                ],[ 
+                    InlineKeyboardButton(
+                        "•✯「𝚂𝙾𝚞𝚁𝚂 VENOM」، ✯•", url="https://t.me/K_o_c_3"),
+                ],
+            ]
+        ),
+    )
+
 
 
 @app.on_callback_query(filters.regex("zzzdv") & SUDOERS)
@@ -70,7 +109,10 @@ async def zzzll(_, query: CallbackQuery):
 تشغيل + (اسم الاغنية / رابط الاغنية)
 <b>- لــ تـشـغـيل اغـنـيـة فـي الـمكـالـمـة الـصـوتـيـة</b>
 
-بحث + الاسـم
+/vplay + (اسم المقـطـع / رابط المقـطـع)
+<b>- لــ تـشـغـيل فيـديـو فـي الـمكـالـمـة المـرئيـة</b>
+
+تحميل + الاسـم
 <b>- لـ تحميـل الاغانـي والمقـاطـع الصوتيـه مـن اليوتيـوب</b>
 
 """,
@@ -96,19 +138,19 @@ async def zzzad(_, query: CallbackQuery):
 الاعدادات
 <b>- لـ عـرض إعـدادات اوضـاع التشغيـل</b>
 
-ايقاف / اسكت
+ايقاف / انهاء / اسكت
 <b>- لـ إيقـاف تـشغـيـل الـمـوسـيـقـى فـي المكـالمـة</b>
 
 وقف / توقف
 <b>- لـ إيقـاف تشغيـل الموسيـقـى فـي المكالمـة مـؤقتـاً</b>
 
-كمل / استئناف
+كمل / كملي
 <b>- لـ إسـتـئـنـاف تـشغـيـل الـمـوسـيـقـى فـي المكـالمـة</b>
 
-تخطي / التالي
+تخطي
 <b>- لـ تخطـي الاغنيـة وتشغيـل الاغنيـة التاليـه</b>
 
-/الاغاني
+الاغاني
 <b>- لـ معـرفـة الاغـانـي المـوجـودة فـي قائمـة الانتظـار</b>
 
 بنج
@@ -119,11 +161,6 @@ async def zzzad(_, query: CallbackQuery):
 
 الادمنيه
 <b>- لـ عـرض قائمـة ادمنيـة البـوت</b>
-ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
-/seek + عـدد الثـوانـي
-<b>- لـ تقديـم الاغنيـه لـ الامـام</b>
-/seekback + عـدد الثـوانـي
-<b>- لـ إرجـاع الاغنيـه لـ الخـلف</b>
 """,
        reply_markup=InlineKeyboardMarkup(
           [
@@ -143,29 +180,32 @@ async def zzzch(_, query: CallbackQuery):
        f"""
 ● <b>قائمــة اوامــر التشغيــل فـي القنــاة :</b>
 ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
-<b>- ارفـع البـوت إشـراف في القنـاة و شغـل المكالمه</b>
-<b>- انشاء مجموعه وارفع البوت اشراف</b>
-<b>- ارسـل في المجموعه (/channelplay او /ربط) + يـوزر القنـاة لـ الربـط</b>
-<b>- ثم استخـدم الاوامــر بالاسفـل بالمجموعه لـ التشغيـل</b>
-<b>- "استخدم الاوامر بـ / او بدون"</b>
+<b>- ارفـع البـوت إشـراف في القنـاة و شغـل مباشـر</b>
+<b>- ارسـل (/channelplay او ربط) + يـوزر القنـاة لـ الربـط</b>
+<b>- ثم استخـدم الاوامــر بالاسفـل لـ التشغيـل</b>
 ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
-cplay + اسم الاغنية
+تشغيل + اسم الاغنية
 <b>- لــ تـشـغـيل اغـنـيـة فـي الـمكـالـمـة الـصـوتـيـة</b>
 
-cvplay + اسم المقـطـع
+فيديو + اسم المقـطـع
 <b>- لــ تـشـغـيل فيـديـو فـي الـمكـالـمـة المـرئيـة</b>
 
-cstop
+ايقاف / انهاء / اسكت
 <b>- لـ إيقـاف تـشغـيـل الـمـوسـيـقـى فـي المكـالمـة</b>
 
-cpause
+وقف / توقف
 <b>- لـ إيقـاف تشغيـل الموسيـقـى فـي المكالمـة مـؤقتـاً</b>
 
-cresume
+كمل / استئناف
 <b>- لـ إسـتـئـنـاف تـشغـيـل الـمـوسـيـقـى فـي المكـالمـة</b>
 
-cskip
+تخطي
 <b>- لـ تخطـي الاغنيـة وتشغيـل الاغنيـة التاليـه</b>
+ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
+/seek + عـدد الثـوانـي
+<b>- لـ تقديـم الاغنيـه لـ الامـام</b>
+/seekback + عـدد الثـوانـي
+<b>- لـ إرجـاع الاغنيـه لـ الخـلف</b>
 """,
        reply_markup=InlineKeyboardMarkup(
           [
@@ -188,13 +228,13 @@ async def zzzup(_, query: CallbackQuery):
 <b>- قائمــة اوامــر التحـديثـات :</b>
 ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
 
-/السجلات
+السجلات
 <b>- لـ جلب سجـلات البـوت 📋</b>
 
-/تحديث
+تحديث
 <b>- لـ تحديـث البــوت</b>
 
-/اعاده تشغيل
+اعاده تشغيل
 <b>- لـ اعـادة تشغيـل البــوت</b>
 
 """,
@@ -218,7 +258,6 @@ async def zzzsu(_, query: CallbackQuery):
 ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
 <b>- قائمــة اوامــر الـرفــع :</b>
 ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
-<b>ملاحظه :- استخدم "/" قبل الامر</b>
 
 رفع مطور/تنزيل مطور
 <b>- لـ رفـع/تنزيـل شخـص مطـور فـي ميـوزك البـوت</b>
@@ -247,15 +286,11 @@ async def zzzbn(_, query: CallbackQuery):
 ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
 <b>- قائمــة اوامــر الحظــر :</b>
 ٴ⋆┄─┄─┄─┄─┄─┄─┄─┄⋆
-<b>ملاحظه :- استخدم "/" قبل الامر</b>
 
-حظر/الغاء الحظر
+بلوك/الغاء بلوك/المبلكين
 <b>- لـ حظـر/الغـاء حظـر شخـص من استخـدام ميـوزك البـوت</b>
 
-المحظورين
-<b>- لـ عـرض قائمـة المحظورين</b>
-
-حظر عام/الغاء حظر عام
+احظره عام/الغاء حظره عام
 <b>- لـ حظـر/الغـاء حظـر شخـص من استخـدام ميـوزك البـوت عـام</b>
 
 المحظورين عام
@@ -291,7 +326,7 @@ async def zzzas(_, query: CallbackQuery):
 السجل [ تفعيل / تعطيل ]
 <b>- لـ تفعيـل/تعطيـل اشعـارات مجموعـة سجـل البــوت</b>
 
-مغادره تفعيل/تعطيل
+المغادره التلقائيه تفعيل/تعطيل
 <b>- لـ تفعيـل/تعطيـل المغـادره التلقائيـه لـ الحسـاب المسـاعـد مـن المجمـوعـات عنـد عـدم استـخـدام الميـوزك</b>
 
 """,
@@ -304,3 +339,5 @@ async def zzzas(_, query: CallbackQuery):
           ]
         ),
    )
+    
+    
