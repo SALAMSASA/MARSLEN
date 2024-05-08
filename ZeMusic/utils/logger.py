@@ -6,29 +6,34 @@ from config import LOGGER_ID
 
 
 async def play_logs(message, streamtype):
-    if await is_on_off(2):
+    if await is_on_off(LOG):
+        if message.chat.username:
+            chatusername = f"@{message.chat.username}"
+        else:
+            chatusername = "ᴩʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ"
         logger_text = f"""
-<b>{app.mention} ᴘʟᴀʏ ʟᴏɢ</b>
-
-<b>ᴄʜᴀᴛ ɪᴅ :</b> <code>{message.chat.id}</code>
-<b>ᴄʜᴀᴛ ɴᴀᴍᴇ :</b> {message.chat.title}
-<b>ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.chat.username}
-
-if message.from_user is not None:
-    user_id = message.from_user.id
-else:
-    user_id = "Not available"
-<b>ɴᴀᴍᴇ :</b> {message.from_user.mention}
-<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}
-
-<b>ǫᴜᴇʀʏ :</b> {message.text.split(None, 1)[1]}
-<b>sᴛʀᴇᴀᴍᴛʏᴘᴇ :</b> {streamtype}"""
-        if message.chat.id != LOGGER_ID:
+**━━━━━━━━━━━━━━━**
+**💞 {MUSIC_BOT_NAME} ᴍᴜsɪᴄ ʟᴏɢs **
+**━━━━━━━━━━━━━━━**
+**🌹️ 𝐂𝐡𝐚𝐭 𝐍𝐚𝐌𝐞 : >** {message.chat.title} [`{message.chat.id}`]
+**━━━━━━━━━━━━━━━**
+**🥀 𝐍𝐚𝐌𝐞 : ›** {message.from_user.mention}
+**━━━━━━━━━━━━━━━**
+**🌸 𝐔𝐬𝐞𝐑𝐧𝐚𝐌𝐞 : ›** @{message.from_user.username}
+**━━━━━━━━━━━━━━━**
+**🌷 𝐈𝐃  : ›** `{message.from_user.id}`
+**━━━━━━━━━━━━━━━**
+**🌿 𝐂𝐡𝐚𝐭 𝐥𝐢𝐧𝐤: >** {chatusername}
+**━━━━━━━━━━━━━━━**
+**🌻 𝐒𝐞𝐀𝐫𝐜𝐇𝐞𝐝 𝐅𝐨𝐫:** {message.text}
+**━━━━━━━━━━━━━━━**
+**💐 𝐒𝐭𝐫𝐄𝐚𝐦 𝐓𝐲𝐏𝐞:** {streamtype}
+**━━━━━━━━━━━━━━━**"""
+        if message.chat.id != LOG_GROUP_ID:
             try:
                 await app.send_message(
-                    chat_id=LOGGER_ID,
-                    text=logger_text,
-                    parse_mode=ParseMode.HTML,
+                    LOG_GROUP_ID,
+                    f"{logger_text}",
                     disable_web_page_preview=True,
                 )
             except:
