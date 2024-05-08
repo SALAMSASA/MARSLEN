@@ -11,8 +11,9 @@ Nem = config.BOT_NAME + " شغل"
 async def subscription(_, __: Client, message: Message):
     if message.from_user is not None:
         user_id = message.from_user.id
+        try:
         await app.get_chat_member(channel, user_id)
-    except UserNotParticipant: 
+    except UserNotParticipant:
         return False
     return True
     
