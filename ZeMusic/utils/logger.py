@@ -14,7 +14,10 @@ async def play_logs(message, streamtype):
 <b>ᴄʜᴀᴛ ɴᴀᴍᴇ :</b> {message.chat.title}
 <b>ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.chat.username}
 
-<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>
+if message.from_user is not None:
+    user_id = message.from_user.id
+else:
+    user_id = "Not available"
 <b>ɴᴀᴍᴇ :</b> {message.from_user.mention}
 <b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}
 
