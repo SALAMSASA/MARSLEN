@@ -27,6 +27,7 @@ app = Client("my_bot")
     ~filters.user(BANNED_USERS)
 )
 async def handle_stop_command(client, message):
+    # Your implementation here
     # Assuming admin_check is defined somewhere else
     if admin_check(message):
         await stop_music(client, message)
