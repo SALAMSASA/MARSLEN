@@ -18,6 +18,13 @@ from strings import get_string
 
 from ..formatters import int_to_alpha
 
+from pyrogram import Client, filters
+
+async def admin_check(_, __, message):
+    user_id = message.from_user.id
+    chat_id = message.chat.id
+    member = await message.chat.get_member(user_id)
+    return member.status in ["administrator", "creator"]
 
 def AdminRightsCheck(mystic):
     async def wrapper(client, message):
