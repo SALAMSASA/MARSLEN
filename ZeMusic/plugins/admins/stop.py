@@ -1,45 +1,67 @@
-from pyrogram import Client, filters
+from pyrogram import filters
+from pyrogram.types import Message
 
-# Assuming BANNED_USERS is a set or list of user IDs who are banned
-BANNED_USERS = set()
+from ZeMusic import app
+from ZeMusic.core.call import Mody
+from ZeMusic.utils.database import set_loop
+from ZeMusic.utils.decorators import AdminRightsCheck
+from ZeMusic.utils.inline import close_markup
+from config import BANNED_USERS
+from strings.filters import command
+from strings import get_string
+#import config
 
-def command(commands):
-    return filters.command(commands, prefixes=["/", "!", "."])
+#Nem = config.BOT_NAME + " اسكت"
+#Men = config.BOT_NAME + " ايقاف"
+@app.on_message(
+    filters.command(["end", "stop", "cend", "cstop"]) & filters.group & ~BANNED_USERS
+)
+@app.on_message(
+    command(["اسكت","ايقاف"]) & filters.group & ~BANNED_USERS
+)
+@AdminRightsCheck
+async def stop_music(cli, message: Message, _, chat_id):
+    if not len(message.command) == 1:
+        return
+    await Mody.stop_stream(chat_id)
+    await set_loop(chat_id, 0)
+    await message.reply_text(
+        _["admin_5"].format((message.from_user.mention if message.from_user else message.chat.title)), reply_markup=close_markup(_)
+    )
 
-async def stop_music(client, message):
-    # Assuming you have a player instance or method to stop the music
-    player = get_music_player_instance()  
-    if player is not None:
-        player.stop()  
-        await message.reply_text("تم إيقاف الموسيقى.")
-    else:
-        await message.reply_text("لم يتم العثور على مشغل الموسيقى.")
 
-def get_music_player_instance():
-    # Replace with actual code to get the music player instance
-    return None  
-
-app = Client("my_bot")
 
 @app.on_message(
-    command(["انهاء", "ايقاف"]) &
-    filters.group &
-    ~filters.user(BANNED_USERS)
+    filters.command(["end", "stop", "cend", "cstop"]) & filters.channel & ~BANNED_USERS
 )
-async def handle_stop_command(client, message):
-    # Your implementation here
-    # Assuming admin_check is defined somewhere else
-    if admin_check(message):
-        await stop_music(client, message)
+@app.on_message(
+    command(["اسكت","ايقاف"]) & filters.channel & ~BANNED_USERS
+)
+async def stop_music(cli, message: Message):
+    try:
+        await message.delete()
+    except:
+        pass
+
+    try:
+        language = await get_lang(message.chat.id)
+        _ = get_string(language)
+    except:
+        _ = get_string("en")
+    if message.command[0][0] == "c":
+        chat_id = await get_cmode(message.chat.id)
+        if chat_id is None:
+            return await message.reply_text(_["setting_7"])
+        try:
+            await app.get_chat(chat_id)
+        except:
+            return await message.reply_text(_["cplay_4"])
     else:
-        await message.reply_text("ليس لديك صلاحيات لإيقاف الموسيقى.")
-
-def admin_check(message):
-    # Define your admin check logic here
-    return True  # or False based on your logic
-
-def main():
-    app.run()
-
-if name == "main":
-    main()
+        chat_id = message.chat.id
+    if not len(message.command) == 1:
+        return
+    await Mody.stop_stream(chat_id)
+    await set_loop(chat_id, 0)
+    await message.reply_text(
+        _["admin_5"].format((message.from_user.mention if message.from_user else message.chat.title)), reply_markup=close_markup(_)
+    )
