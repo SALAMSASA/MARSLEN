@@ -43,7 +43,8 @@ async def handle_channel_messages(client, message):
     if message.text.lower() == "إيقاف":
         await stop_music(client, message)
 
-app.run()
+if name == "main":
+    app.run()
 
 @app.on_message(
     filters.command(
