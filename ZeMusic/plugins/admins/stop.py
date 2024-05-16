@@ -1,7 +1,4 @@
 from pyrogram import Client, filters
-from ZeMusic.utils.decorators.admins import admin_check
-
-app = Client("my_bot")
 
 # Assuming BANNED_USERS is a set or list of user IDs who are banned
 BANNED_USERS = set()
@@ -11,21 +8,37 @@ def command(commands):
 
 async def stop_music(client, message):
     # Assuming you have a player instance or method to stop the music
-    player = get_music_player_instance()  # استبدل هذا بالكود الفعلي للحصول على مشغل الموسيقى
+    player = get_music_player_instance()  
     if player is not None:
-        player.stop()  # استبدل هذا بالطريقة الفعلية لإيقاف الموسيقى
+        player.stop()  
         await message.reply_text("تم إيقاف الموسيقى.")
     else:
         await message.reply_text("لم يتم العثور على مشغل الموسيقى.")
 
 def get_music_player_instance():
     # Replace with actual code to get the music player instance
-    # Example: return music_player_instance
-    return None  # استبدل هذا بالكود الفعلي للحصول على مشغل الموسيقى
+    return None  
 
-@app.on_message(command(["انهاء", "ايقاف"]) & filters.group & ~filters.user(BANNED_USERS) & filters.create(admin_check))
+app = Client("my_bot")
+
+@app.on_message(
+    command(["انهاء", "ايقاف"]) &
+    filters.group &
+    ~filters.user(BANNED_USERS)
+)
 async def handle_stop_command(client, message):
-    await stop_music(client, message)
+    # Assuming admin_check is defined somewhere else
+    if admin_check(message):
+        await stop_music(client, message)
+    else:
+        await message.reply_text("ليس لديك صلاحيات لإيقاف الموسيقى.")
+
+def admin_check(message):
+    # Define your admin check logic here
+    return True  # or False based on your logic
+
+def main():
+    app.run()
 
 if name == "main":
-    app.run()
+    main()
