@@ -23,28 +23,7 @@ from ZeMusic.utils.inline import (
 from ZeMusic.utils.logger import play_logs
 from ZeMusic.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical
-from pyrogram import Client, filters
-from ZeMusic.utils.decorators.admins import admin_check
 
-app = Client("my_bot")
-
-async def stop_music(client, message):
-    # Assuming you have a player instance or method to stop the music
-    player = get_music_player_instance()  # استبدل هذا بالكود الفعلي للحصول على مشغل الموسيقى
-    player.stop()  # استبدل هذا بالطريقة الفعلية لإيقاف الموسيقى
-    await message.reply_text("تم إيقاف الموسيقى.")
-
-def get_music_player_instance():
-    # Replace with actual code to get the music player instance
-    pass
-
-@app.on_message(filters.channel & admin_check)
-async def handle_channel_messages(client, message):
-    if message.text.lower() == "إيقاف":
-        await stop_music(client, message)
-
-if name == "main":
-    app.run()
 
 @app.on_message(
     filters.command(
