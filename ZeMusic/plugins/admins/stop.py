@@ -1,14 +1,4 @@
-from pyrogram import filters
-from pyrogram.types import Message
-
-from ZeMusic import app
-from ZeMusic.core.call import Mody
-from ZeMusic.utils.database import set_loop
-from ZeMusic.utils.decorators import AdminRightsCheck
-from ZeMusic.utils.inline import close_markup
-from config import BANNED_USERS
 from pyrogram import Client, filters
-from pyrogram.handlers import MessageHandler
 from ZeMusic.utils.decorators.admins import admin_check
 
 app = Client("my_bot")
@@ -33,7 +23,7 @@ def get_music_player_instance():
     # Example: return music_player_instance
     return None  # استبدل هذا بالكود الفعلي للحصول على مشغل الموسيقى
 
-@app.on_message(command(["انهاء", "ايقاف"]) & filters.group & ~filters.user(BANNED_USERS) & admin_check)
+@app.on_message(command(["انهاء", "ايقاف"]) & filters.group & ~filters.user(BANNED_USERS) & filters.create(admin_check))
 async def handle_stop_command(client, message):
     await stop_music(client, message)
 
