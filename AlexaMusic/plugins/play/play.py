@@ -13,7 +13,7 @@ import random
 import string
 
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
+from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message, InlineKeyboardButton
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
@@ -43,8 +43,8 @@ PLAY_COMMAND = get_command("PLAY_COMMAND")
 
 
 @app.on_message(
-filters.command(PLAY_COMMAND,"")
-    & ~BANNED_USERS)
+ filters.command(PLAY_COMMAND,"")
+    & ~BANNED_USERS)
 @PlayWrapper
 async def play_commnd(
     client,
@@ -69,8 +69,8 @@ async def play_commnd(
     slider = None
     plist_type = None
     spotify = None
-    user_id = message.from_user.id
-    user_name = message.from_user.first_name
+    user_id = message.from_user.id if message.from_user else "1748768168"
+    user_name = message.from_user.first_name if message.from_user else "None"
     audio_telegram = (
         (message.reply_to_message.audio or message.reply_to_message.voice)
         if message.reply_to_message
