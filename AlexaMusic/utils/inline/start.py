@@ -107,17 +107,17 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
             [
                 InlineKeyboardButton(text=" ‹ المطور › ", user_id=OWNER),
                 InlineKeyboardButton(
-                    text=_["S_B_6"], url=f"{GITHUB_REPO}"
+                    text=_["S_B_6"], url=f"{SUPPORT_GROUP}"
                 ),
             ]
         )
     else:
-       if SUPPORT_CHANNEL:
+        if GITHUB_REPO:
             buttons.append(
                 [
                     InlineKeyboardButton(
-                        text=" ‹ السورس › ", url=f"{SUPPORT_CHANNEL}"
-                    )
+                        text=_["S_B_6"], url=f"{SUPPORT_GROUP}"
+                    ),
                 ]
             )
         if OWNER:
