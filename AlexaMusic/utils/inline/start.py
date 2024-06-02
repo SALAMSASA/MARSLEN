@@ -112,12 +112,12 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
             ]
         )
     else:
-        if GITHUB_REPO:
+       if SUPPORT_CHANNEL:
             buttons.append(
                 [
                     InlineKeyboardButton(
-                        text=_["S_B_6"], url=f"{GITHUB_REPO}"
-                    ),
+                        text=" ‹ السورس › ", url=f"{SUPPORT_CHANNEL}"
+                    )
                 ]
             )
         if OWNER:
