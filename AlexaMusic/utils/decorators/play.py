@@ -48,18 +48,37 @@ def PlayWrapper(command):
                     "Bot is under maintenance. Please wait for some time..."
                 )
         if PRIVATE_BOT_MODE == str(True):
-            if not await is_served_private_chat(message.chat.id):
-                await message.reply_text(
-                    "**Private Music Bot**\n\nOnly for authorized chats from the owner. Ask my owner to allow your chat first."
-                )
-                return await app.leave_chat(message.chat.id)
-        if await is_commanddelete_on(message.chat.id):
-            try:
-                await message.delete()
-            except:
-                pass
+            if not a get_assistant,
+    get_cmode,
+    get_lang,
+    get_playmode,
+    get_playtype,
+    is_active_chat,
+    is_maintenance,
+)
+from AnonXMusic.utils.inline import botplaylist_markup
+from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
+from strings import get_string
+
+links = {}
+
+
+def PlayWrapper(command):
+    async def wrapper(client, message):
         language = await get_lang(message.chat.id)
         _ = get_string(language)
+        if await is_maintenance() is False:
+            if message.from_user.id not in SUDOERS:
+                return await message.reply_text(
+                    text=f"{app.mention} ɪs ᴜɴᴅᴇʀ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ, ᴠɪsɪᴛ <a href={SUPPORT_CHAT}>sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a> ғᴏʀ ᴋɴᴏᴡɪɴɢ ᴛʜᴇ ʀᴇᴀsᴏɴ.",
+                    disable_web_page_preview=True,
+                )
+
+        try:
+            await message.delete()
+        except:
+            pass
+
         audio_telegram = (
             (message.reply_to_message.audio or message.reply_to_message.voice)
             if message.reply_to_message
@@ -78,25 +97,13 @@ def PlayWrapper(command):
                 buttons = botplaylist_markup(_)
                 return await message.reply_photo(
                     photo=PLAYLIST_IMG_URL,
-                    caption=_["playlist_1"],
+                    caption=_["play_18"],
                     reply_markup=InlineKeyboardMarkup(buttons),
                 )
-        if message.sender_chat:
-            upl = InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="How to Fix this? ",
-                            callback_data="AnonymousAdmin",
-                        ),
-                    ]
-                ]
-            )
-            return await message.reply_text(_["general_4"], reply_markup=upl)
         if message.command[0][0] == "c":
             chat_id = await get_cmode(message.chat.id)
             if chat_id is None:
-                return await message.reply_text(_["setting_12"])
+                return await message.reply_text(_["setting_7"])
             try:
                 chat = await app.get_chat(chat_id)
             except:
@@ -111,19 +118,20 @@ def PlayWrapper(command):
             if message.from_user.id not in SUDOERS:
                 admins = adminlist.get(message.chat.id)
                 if not admins:
-                    return await message.reply_text(_["admin_18"])
-                if message.from_user.id not in admins:
-                    return await message.reply_text(_["play_4"])
+                    return await message.reply_text(_["admin_13"])
+                else:
+                    if message.from_user.id not in admins:
+                        return await message.reply_text(_["play_4"])
         if message.command[0][0] == "v":
             video = True
         else:
-            if message.text and "-v" in message.text:
+            if "-v" in message.text:
                 video = True
             else:
                 video = True if message.command[0][1] == "v" else None
         if message.command[0][-1] == "e":
             if not await is_active_chat(chat_id):
-                return await message.reply_text(_["play_18"])
+                return await message.reply_text(_["play_16"])
             fplay = True
         else:
             fplay = None
@@ -134,13 +142,13 @@ def PlayWrapper(command):
                 try:
                     get = await app.get_chat_member(chat_id, userbot.id)
                 except ChatAdminRequired:
-                    return await message.reply_text(_["call_12"])
-                if get.status in [
-                    ChatMemberStatus.BANNED,
-                    ChatMemberStatus.RESTRICTED,
-                ]:
+                    return await message.reply_text(_["call_1"])
+                if (
+                    get.status == ChatMemberStatus.BANNED
+                    or get.status == ChatMemberStatus.RESTRICTED
+                ):
                     return await message.reply_text(
-                        _["call_13"].format(
+                        _["call_2"].format(
                             app.mention, userbot.id, userbot.name, userbot.username
                         )
                     )
@@ -158,18 +166,18 @@ def PlayWrapper(command):
                         try:
                             invitelink = await app.export_chat_invite_link(chat_id)
                         except ChatAdminRequired:
-                            return await message.reply_text(_["call_12"])
+                            return await message.reply_text(_["call_1"])
                         except Exception as e:
                             return await message.reply_text(
-                                _["call_14"].format(app.mention, type(e).__name__)
+                                _["call_3"].format(app.mention, type(e).__name__)
                             )
 
                 if invitelink.startswith("https://t.me/+"):
                     invitelink = invitelink.replace(
                         "https://t.me/+", "https://t.me/joinchat/"
                     )
-               myu = await message.reply_text(call_15_message.format(app.mention))
-            try:
+                myu = await message.reply_text(_["call_4"].format(app.mention))
+                try:
                     await asyncio.sleep(1)
                     await userbot.join_chat(invitelink)
                 except InviteRequestSent:
@@ -177,15 +185,15 @@ def PlayWrapper(command):
                         await app.approve_chat_join_request(chat_id, userbot.id)
                     except Exception as e:
                         return await message.reply_text(
-                            _["call_14"].format(app.mention, type(e).__name__)
+                            _["call_3"].format(app.mention, type(e).__name__)
                         )
                     await asyncio.sleep(3)
-                    await myu.edit(_["call_16"].format(app.mention))
+                    await myu.edit(_["call_5"].format(app.mention))
                 except UserAlreadyParticipant:
                     pass
                 except Exception as e:
                     return await message.reply_text(
-                        _["call_14"].format(app.mention, type(e).__name__)
+                        _["call_3"].format(app.mention, type(e).__name__)
                     )
 
                 links[chat_id] = invitelink
