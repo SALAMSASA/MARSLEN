@@ -34,4 +34,5 @@ async def command_handler(_: Client, message: Message):
         ])
         await message.reply(
             f"◇ عذرًا عزيزي {user} ، عليك الاشتراك في قناة البوت أولاً.",
-            reply_markup=m
+            reply_markup=markup
+        )
