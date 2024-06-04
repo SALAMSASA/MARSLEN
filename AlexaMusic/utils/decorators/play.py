@@ -168,8 +168,8 @@ def PlayWrapper(command):
                     invitelink = invitelink.replace(
                         "https://t.me/+", "https://t.me/joinchat/"
                     )
-                myu = await message.reply_text(_["call_15"].format(app.mention))
-                try:
+               myu = await message.reply_text(call_15_message.format(app.mention))
+            try:
                     await asyncio.sleep(1)
                     await userbot.join_chat(invitelink)
                 except InviteRequestSent:
