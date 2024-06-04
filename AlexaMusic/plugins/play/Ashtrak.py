@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.types import Message, ChatType, InlineKeyboardMarkup as Markup, InlineKeyboardButton as Button
+from pyrogram.types import Message, InlineKeyboardMarkup as Markup, InlineKeyboardButton as Button
 import config
 
 # تحقق من وجود السمات المطلوبة في config
@@ -26,7 +26,7 @@ subscribed = filters.create(subscription)
 # تعريف دالة لمعالجة الأوامر
 @app.on_message(filters.command(["تشغيل", "شغل", Nem], "") & ~subscribed)
 async def command_handler(_: Client, message: Message):
-    if message.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]:
+    if message.chat.type in ["group", "supergroup"]:
         user_id = message.from_user.id
         user = message.from_user.first_name
         markup = Markup([
