@@ -42,29 +42,6 @@ links = {}
 
 def PlayWrapper(command):
     async def wrapper(client, message):
-        if await is_maintenance() is False:
-            if message.from_user.id not in SUDOERS:
-                return await message.reply_text(
-                    "Bot is under maintenance. Please wait for some time..."
-                )
-        if PRIVATE_BOT_MODE == str(True):
-            if not a get_assistant,
-    get_cmode,
-    get_lang,
-    get_playmode,
-    get_playtype,
-    is_active_chat,
-    is_maintenance,
-)
-from AnonXMusic.utils.inline import botplaylist_markup
-from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
-from strings import get_string
-
-links = {}
-
-
-def PlayWrapper(command):
-    async def wrapper(client, message):
         language = await get_lang(message.chat.id)
         _ = get_string(language)
         if await is_maintenance() is False:
