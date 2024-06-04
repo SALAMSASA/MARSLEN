@@ -2,9 +2,11 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, ChatType, InlineKeyboardMarkup as Markup, InlineKeyboardButton as Button
 import config
 
-CHANNEL_LINK في config
-if not hasattr(config, 'CHANNEL_LINK'):
-    raise AttributeError("config module does not have 'CHANNEL_LINK' attribute")
+# تحقق من وجود السمات المطلوبة في config
+required_attributes = ['CHANNEL_LINK', 'BOT_NAME', 'CHANNEL_NAME']
+for attr in required_attributes:
+    if not hasattr(config, attr):
+        raise AttributeError(f"config module does not have '{attr}' attribute")
 
 channel = config.CHANNEL_LINK
 Nem = config.BOT_NAME + " شغل"
@@ -32,5 +34,4 @@ async def command_handler(_: Client, message: Message):
         ])
         await message.reply(
             f"◇ عذرًا عزيزي {user} ، عليك الاشتراك في قناة البوت أولاً.",
-            reply_markup=markup
-        )
+            reply_markup=m
