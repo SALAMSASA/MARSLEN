@@ -1,33 +1,37 @@
+import asyncio
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
+from strings.filters import command
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from AlexaMusic import app
-import config
+import random
+    
 
-Muntazer =config.CHANNEL_LINK
-@app.on_message(filters.incoming & filters.private, group=-1)
-async def must_join_channel(app: Client, msg: Message):
-    if not Muntazer:
-        return
-    try:
-        try:
-            await app.get_chat_member(Muntazer, msg.from_user.id)
-        except UserNotParticipant:
-            if Muntazer.isalpha():
-                link = "https://t.me/" + Muntazer
-            else:
-                chat_info = await app.get_chat(Muntazer)
-                link = chat_info.invite_link
-            try:
-                await msg.reply(
-                    f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
-                    disable_web_page_preview=True,
-                    reply_markup=InlineKeyboardMarkup([
-                        [InlineKeyboardButton(config.CHANNEL_NAME, url=link)]
-                    ])
-                )
-                await msg.stop_propagation()
-            except ChatWriteForbidden:
-                pass
-    except ChatAdminRequired:
-        print(f"I m not admin in the MUST_JOIN chat {Muntazer}!")
+@app.on_message(command([f"غنيلي", "غني", "غ", "{BOT_USERNAME} غنيلي"]))
+async def ihd(client: Client, message: Message):
+    rl = random.randint(8,20)
+    url = f"https://t.me/AudiosFaeder/{rl}"
+    await client.send_voice(message.chat.id,url,caption="🔥 ¦ تـم اختيـار الاغـنـية لـك",
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        message.from_user.first_name, url=f"https://t.me/{message.from_user.username}")
+                ],
+            ]
+        )
+    )
+    
+@app.on_message(command(["صوره","صور"]))
+async def ihd(client: Client, message: Message):
+    rs = random.randint(39,148)
+    url = f"https://t.me/lli1w/{rs}"
+    await client.send_photo(message.chat.id,url,caption="💕 ¦ تـم اختيـار الصوره لـك",
+    reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        message.from_user.first_name, url=f"https://t.me/{message.from_user.username}")
+                ],
+            ]
+        )
+  )
