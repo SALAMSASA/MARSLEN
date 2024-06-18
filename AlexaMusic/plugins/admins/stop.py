@@ -39,7 +39,9 @@ async def stop_music(cli, message: Message, _, chat_id):
 @app.on_message(
     filters.command(["end", "stop", "cend", "cstop"]) & filters.channel & ~BANNED_USERS
 )
-app.add_handler(MessageHandler(stop_command_handler, filters.command(["اسكت", "ايقاف"]) & filters.channel & ~filters.user(BANNED_USERS)
+app.add_handler(MessageHandler(stop_command_handler, filters.command(["اسكت", "ايقاف"]) & filters.channel & ~filters.user(BANNED_USERS)))
+
+app.run()
 
 async def stop_music(cli, message: Message):
     try:
