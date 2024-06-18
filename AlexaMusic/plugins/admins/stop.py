@@ -39,10 +39,10 @@ async def stop_music(cli, message: Message, _, chat_id):
 @app.on_message(
     filters.command(["end", "stop", "cend", "cstop"]) & filters.channel & ~BANNED_USERS
 )
-app.add_handler(MessageHandler(stop_command_handler, filters.command(STOP_COMMAND,"") & filters.channel & ~filters.user(BANNED_USERS)))
-
-app.run()
-
+@app.on_message(
+filters.command(STOP_COMMAND,"")
+    & ~BANNED_USERS)
+@AdminRightsCheck
 async def stop_music(cli, message: Message):
     try:
         await message.delete()
