@@ -37,7 +37,7 @@ class AlexaBot(Client):
         self.mention = get_me.mention
         try:
             await self.send_message(
-                config.LOG_GROUP_ID, "» ᴍᴜsɪᴄ ʙᴏᴛ sᴛᴀʀᴛᴇᴅ, ᴡᴀɪᴛɪɴɢ ғᴏʀ ᴀssɪsᴛᴀɴᴛ..."
+                config.LOG_GROUP_ID, "»『 تم تشغيل البوت على سورس Alexa 』"
             )
         except:
             LOGGER(__name__).error(
