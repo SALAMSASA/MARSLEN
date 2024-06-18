@@ -17,7 +17,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: Formate By @TheTeamAlexa
+          commit-message: Formate By @A1DIIU
+
           title: Format code.
           body: Automated code formatting.
           labels: ⚫️ black
