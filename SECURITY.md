@@ -1,21 +1,21 @@
-# Security Policy
+#السياسة الأمنية
 
-## Supported Versions
+## الإصدارات المدعومة
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+استخدم هذا القسم لإخبار الأشخاص عن إصدارات مشروعك
+يتم دعمه حاليًا بالتحديثات الأمنية.
 
-| Version | Supported          |
+| النسخة | مدعوم |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 5.1.x | :white_check_mark: |
+| 5.0.x | :س: |
+| 4.0.x | :white_check_mark: |
+| < 4.0 | :س: |
 
-## Reporting a Vulnerability
+## الإبلاغ عن ثغرة أمنية
 
-Use this section to tell people how to report a vulnerability.
+استخدم هذا القسم لإخبار الأشخاص بكيفية الإبلاغ عن الثغرة الأمنية.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+أخبرهم إلى أين يذهبون، وكم مرة يمكنهم أن يتوقعوا الحصول على تحديث على
+تم الإبلاغ عن الثغرة الأمنية، وما يمكن توقعه إذا تم قبول الثغرة الأمنية أو
+رفض ، الخ.
