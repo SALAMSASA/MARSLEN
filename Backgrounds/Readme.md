@@ -1,12 +1,11 @@
-Finally, on March 7th, [@TheTeamAlexa](https://github.com/TheTeamAlexa) made random thumbnail picks for YouTube images to play songs on your Telegram Voice chat. This code originally belongs to (C) Team Yukki and was optimized by Anonymous. Make sure to star all projects when you try to modify them. You can join our group below. Thank you for using Alexa Music.
-<details>
+أخيرًا، في السابع من مارس، قام @A1DIIU باختيارات مصغرة عشوائية لصور YouTube لتشغيل الأغاني على الدردشة الصوتية على Telegram. ينتمي هذا الرمز في الأصل إلى (C) Team Yukki وتم تحسينه بواسطة Anonymous. تأكد من تمييز كافة المشاريع بنجمة عند محاولة تعديلها. يمكنك الانضمام إلى مجموعتنا أدناه. شكرًا لك على استخدام موسيقى Alexa
 <summary><b>sᴜᴘᴘᴏʀᴛ</b></summary>
 <br>
 
 # ❤️ Support<
-<a href="https://t.me/Alexa_BotUpdates"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
-<a href="https://t.me/Shayri_Music_Lovers"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
-<a href="https://t.me/Give_Me_Heart"><img src="https://img.shields.io/badge/Give-Me%20Heart-blue.svg?logo=telegram"></a>
-<a href="https://t.me/Alexa_Help"><img src="https://img.shields.io/badge/Give-Me%20Heart-blue.svg?logo=telegram"></a>
+<a href="https://t.me/A1DIIU"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
+<a href="https://t.me/SUPERXFAST"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
+<a href="https://t.me/ll0llld"><img src="https://img.shields.io/badge/Give-Me%20Heart-blue.svg?logo=telegram"></a>
+<a href="https://t.me/L_Q7I"><img src="https://img.shields.io/badge/Give-Me%20Heart-blue.svg?logo=telegram"></a>
 
 </details>
