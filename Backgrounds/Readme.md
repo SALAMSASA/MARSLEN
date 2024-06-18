@@ -3,8 +3,8 @@
 <br>
 
 # ❤️ Support<
-<a href="https://t.me/A1DIIU"><img src="https://img.shields.io/badge/Join-Telegram%20Channel-red.svg?logo=Telegram"></a>
-<a href="https://t.me/SUPERXFAST"><img src="https://img.shields.io/badge/Join-Telegram%20Group-blue.svg?logo=telegram"></a>
+<a href="https://t.me/A1DIIU"><img src="https://img.shields.io/badge/SALAM-Telegram%20Channel-red.svg?logo=Telegram"></a>
+<a href="https://t.me/SUPERXFAST"><img src="https://img.shields.io/badge/SSA-Telegram%20Group-blue.svg?logo=telegram"></a>
 <a href="https://t.me/ll0llld"><img src="https://img.shields.io/badge/Give-Me%20Heart-blue.svg?logo=telegram"></a>
 <a href="https://t.me/L_Q7I"><img src="https://img.shields.io/badge/Give-Me%20Heart-blue.svg?logo=telegram"></a>
 
