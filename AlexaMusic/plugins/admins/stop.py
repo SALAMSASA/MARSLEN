@@ -40,8 +40,8 @@ async def stop_music(cli, message: Message, _, chat_id):
     filters.command(["end", "stop", "cend", "cstop"]) & filters.channel & ~BANNED_USERS
 )
 @app.on_message(
-filters.command(STOP_COMMAND,"")
-    & ~BANNED_USERS)
+    command(["اسكت","ايقاف"]) & filters.channel & ~BANNED_USERS
+)
 async def stop_music(cli, message: Message):
     try:
         await message.delete()
@@ -65,7 +65,7 @@ async def stop_music(cli, message: Message):
         chat_id = message.chat.id
     if not len(message.command) == 1:
         return
-    await Anony.stop_stream(chat_id)
+    await Mody.stop_stream(chat_id)
     await set_loop(chat_id, 0)
     await message.reply_text(
         _["admin_5"].format((message.from_user.mention if message.from_user else message.chat.title)), reply_markup=close_markup(_)
