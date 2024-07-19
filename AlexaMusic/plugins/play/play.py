@@ -34,16 +34,34 @@ from AlexaMusic.utils.inline.play import (
 from AlexaMusic.utils.inline.playlist import botplaylist_markup
 from AlexaMusic.utils.logger import play_logs
 from AlexaMusic.utils.stream.stream import stream
-from config import BANNED_USERS, lyrical
+from config import BANNED_USERS, lyrical, CHANNEL_SUDO, YAFA_NAME, YAFA_CHANNEL
 from strings import get_command
 from AlexaMusic.utils.database import is_served_user
+force_btn = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton(   
+              text=f"{YAFA_NAME}", url=f"{YAFA_CHANNEL}",)                        
+        ],        
+    ]
+)
 
+async def check_is_joined(message):    
+    try:
+        userid = message.from_user.id
+        status = await app.get_chat_member(f"{CHANNEL_SUDO}", userid)
+        return True
+    except Exception:
+        await message.reply_text("عذرآ ، عمࢪي عليك الاشتࢪاك في قناة السـورس اولآ ",reply_markup=force_btn)
+        return False
+        
 # Command
 PLAY_COMMAND = get_command("PLAY_COMMAND")
 
 
 @app.on_message(
 filters.command(PLAY_COMMAND, "")
+    & filters.group
     & ~BANNED_USERS
 )
 @PlayWrapper
@@ -58,10 +76,7 @@ async def play_commnd(
     url,
     fplay,
 ):
-    if not await is_served_user(message.from_user.id):
-        await message.reply_text(
-            text="😢 ᴅᴇᴀʀ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴀ ᴠᴇʀɪғɪᴇᴅ ᴀᴛ ᴀʟᴇxᴀ ᴅᴀᴛᴀʙᴀsᴇ.\n☔ ᴘʟᴇᴀsᴇ ᴜsᴇ /verify ᴛᴏ ᴠᴇʀɪғʏ ʏᴏᴜʀsᴇʟғ ᴀᴛ ᴀʟᴇxᴀ ᴅᴀᴛᴀʙᴀsᴇ.",
-        )
+    if not await check_is_joined(message):
         return
     mystic = await message.reply_text(
         _["play_2"].format(channel) if channel else _["play_1"]
