@@ -10,20 +10,17 @@ import pytz
 from AlexaMusic.core.call import Alexa
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-from AlexaMusic.core.call import Alexa
 from AlexaMusic.utils.database import *
-from pytgcalls.exceptions import (NoActiveGroupCall,TelegramServerError,AlreadyJoinedError)
+from pytgcalls.exceptions import (
+    NoActiveGroupCall,
+    TelegramServerError,
+    AlreadyJoinedError
+)
 from pyrogram.errors import (
     ChatAdminRequired,
     UserAlreadyParticipant,
     UserNotParticipant,
 )
-
-import requests
-from datetime import datetime
-import asyncio
-import pytz
-
 # تعيين المنطقة الزمنية إلى بغداد
 tz = pytz.timezone('Asia/Baghdad')
 
