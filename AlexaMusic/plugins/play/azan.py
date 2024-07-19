@@ -19,95 +19,94 @@ from pyrogram.errors import (
     UserNotParticipant,
 )
 
-tz = pytz.timezone('Africa/Cairo')
+import requests
+from datetime import datetime
+import asyncio
+import pytz
+
+# تعيين المنطقة الزمنية إلى بغداد
+tz = pytz.timezone('Asia/Baghdad')
 
 chat = []
 
 @app.on_message(filters.text & ~filters.private, group = 20)
 async def azaan(c, msg):
-  if msg.text == "تفعيل الاذان":
-    if msg.chat.id in chat:
-      return await msg.reply_text("- الاذان متفعل هنا من قبل 🥰♥️")
-    else:
-      chat.append(msg.chat.id)
-      return await msg.reply_text("تم تفعيل الاذان ♥️🌿")
-  elif msg.text == "تعطيل الاذان":
-    if msg.chat.id in chat:
-      chat.remove(msg.chat.id)
-      return await msg.reply_text("تم تعطيل الاذان ♥️🌿")
-    else:
-      return await msg.reply_text("- الاذان متعطل هنا من قبل 🥰♥️")
+    if msg.text == "تفعيل الاذان":
+        if msg.chat.id in chat:
+            return await msg.reply_text("- الاذان مفعل من قبل")
+        else:
+            chat.append(msg.chat.id)
+            return await msg.reply_text("تم تفعيل الاذان ♥️🌿")
+    elif msg.text == "تعطيل الاذان":
+        if msg.chat.id in chat:
+            chat.remove(msg.chat.id)
+            return await msg.reply_text("تم تعطيل الاذان ♥️🌿")
+        else:
+            return await msg.reply_text("- الاذان معطل من قبل")
       
 async def kill():
-  for i in chat:
-    await Alexa.force_stop_stream(i)
-
+    for i in chat:
+        await Alexa.force_stop_stream(i)
 
 async def play(i):
-  assistant = await group_assistant(Alexa,i)
-  file_path = "./assets/azan.m4a"
-  stream = AudioPiped(file_path, audio_parameters=HighQualityAudio())
-  try:
-      await assistant.join_group_call(
-           i,
-           stream,
-           stream_type=StreamType().pulse_stream,
-      )
-  except NoActiveGroupCall:
-    try:
-        await Alexa.join_assistant(i,i)
-    except Exception as e:
-       await app.send_message(i,f"{e}")
-  except TelegramServerError:
-    await app.send_message(i,"في خطا ف سيرفرات التليجرام")
-  except AlreadyJoinedError:
-    await kill()
+    assistant = await group_assistant(Alexa, i)
+    file_path = "./assets/azan.m4a"
+    stream = AudioPiped(file_path, audio_parameters=HighQualityAudio())
     try:
         await assistant.join_group_call(
-           i,
-           stream,
-           stream_type=StreamType().pulse_stream,
+            i,
+            stream,
+            stream_type=StreamType().pulse_stream,
         )
-    except Exception as e:
-        await app.send_message(i,f"{e}")
-    
-           
-       
+    except NoActiveGroupCall:
+        try:
+            await Alexa.join_assistant(i, i)
+        except Exception as e:
+            await app.send_message(i, f"{e}")
+    except TelegramServerError:
+        await app.send_message(i, "في خطأ في سيرفرات التليجرام")
+    except AlreadyJoinedError:
+        await kill()
+        try:
+            await assistant.join_group_call(
+                i,
+                stream,
+                stream_type=StreamType().pulse_stream,
+            )
+        except Exception as e:
+            await app.send_message(i, f"{e}")
 
 def prayer_time():
-   try:
-       prayer = requests.get(f"http://api.aladhan.com/timingsByAddress?address=Cairo&method=4&school=0")
-       prayer = prayer.json()
-       fajr = datetime.strptime(prayer['data']['timings']['Fajr'], '%H:%M').strftime('%I:%M %p')
-       dhuhr = datetime.strptime(prayer['data']['timings']['Dhuhr'], '%H:%M').strftime('%I:%M %p')
-       asr = datetime.strptime(prayer['data']['timings']['Asr'], '%H:%M').strftime('%I:%M %p')
-       maghrib = datetime.strptime(prayer['data']['timings']['Maghrib'], '%H:%M').strftime('%I:%M %p')
-       isha = datetime.strptime(prayer['data']['timings']['Isha'], '%H:%M').strftime('%I:%M %p')
-       if datetime.now(tz).strftime('%I:%M %p') == fajr:
-         return "الفجر"
-       elif datetime.now(tz).strftime('%I:%M %p') == dhuhr:
-         return "الظهر"
-       elif datetime.now(tz).strftime('%I:%M %p') == asr:
-         return "العصر"
-       elif datetime.now(tz).strftime('%I:%M %p') == maghrib:
-         return "المغرب"
-       elif datetime.now(tz).strftime('%I:%M %p') == isha:  
-         return "العشاء"
-   except Exception as e:
-       asyncio.sleep(5)
-       print(e)  
-#لالالالا
-# جتة مواعيد الصلاة الي تحت دي سارقها من هلال علشان م بعرف استخدم مكتبة ال time ف انضموا لقناته @SOURCEFR3ON
+    try:
+        prayer = requests.get(f"http://api.aladhan.com/timingsByAddress?address=Baghdad&method=4&school=0")
+        prayer = prayer.json()
+        fajr = datetime.strptime(prayer['data']['timings']['Fajr'], '%H:%M').strftime('%I:%M %p')
+        dhuhr = datetime.strptime(prayer['data']['timings']['Dhuhr'], '%H:%M').strftime('%I:%M %p')
+        asr = datetime.strptime(prayer['data']['timings']['Asr'], '%H:%M').strftime('%I:%M %p')
+        maghrib = datetime.strptime(prayer['data']['timings']['Maghrib'], '%H:%M').strftime('%I:%M %p')
+        isha = datetime.strptime(prayer['data']['timings']['Isha'], '%H:%M').strftime('%I:%M %p')
+
+        if datetime.now(tz).strftime('%I:%M %p') == fajr:
+            return "الفجر"
+        elif datetime.now(tz).strftime('%I:%M %p') == dhuhr:
+            return "الظهر"
+        elif datetime.now(tz).strftime('%I:%M %p') == asr:
+            return "العصر"
+        elif datetime.now(tz).strftime('%I:%M %p') == maghrib:
+            return "المغرب"
+        elif datetime.now(tz).strftime('%I:%M %p') == isha:
+            return "العشاء"
+    except Exception as e:
+        asyncio.sleep(5)
+        print(e)
 
 async def azkar():
-  while not await asyncio.sleep(2):
-    if prayer_time():
-     prayer = prayer_time()
-     await kill()
-     for i in chat:
-       await app.send_message(i, f"حان الان وقت اذان {prayer} بتوقيت القاهرة 🥰♥️")
-       await play(i)
-     await asyncio.sleep(174)
-     await kill()
-#مواعيد الصلاه بس الي سارقها بقيت الكود كتابتي هي اكيد كتابه معاقه بس عادي م مهم رايك انا مبسوط بيها يوزري للاعمال الخاصه @z0hary
-     
+    while not await asyncio.sleep(2):
+        prayer = prayer_time()
+        if prayer:
+            await kill()
+            for i in chat:
+                await app.send_message(i, f"حان الآن وقت أذان {prayer} بتوقيت بغداد 🥰♥️")
+                await play(i)
+            await asyncio.sleep(174)
+            await kill()
