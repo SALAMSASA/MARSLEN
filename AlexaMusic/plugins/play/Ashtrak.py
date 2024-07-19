@@ -27,12 +27,9 @@ async def bkouqw(client: Client, message: Message):
     await message.reply_photo(
         photo=f"https://telegra.ph/file/e98db958e796347fb7d4b.jpg",
         caption=f"""**اهلا بك عزيزي {message.from_user.mention} في سورس  ليثون
-★᚜ اسم سورس : ليثون
-
+★᚜ سورس : ليثون
 ★᚜ نوع : ميوزك
-
 ★᚜ اللغه : اللغه العربيه ويدعم الانجليزيه 
-
 ★᚜ مجال العمل : بوتات تشغيل الموسيقى في الاتصال
 ★᚜ نظام التشغيل : كارولين بوت ميوزك
 ★᚜ الاصدار 1.0
