@@ -23,7 +23,7 @@ def start_pannel(_):
                 url=f"https://t.me/{app.username}?start=help",
             ),
             InlineKeyboardButton(
-                text=" ‹ المساعده › ", callback_data="settings_helper"
+                text=" ‹ اوامر البوت › ", callback_data="settings_helper"
             ),
         ],
     ]
@@ -34,7 +34,7 @@ def start_pannel(_):
                     text=" ‹ السورس › ", url=f"{SUPPORT_CHANNEL}"
                 ),
                 InlineKeyboardButton(
-                    text=" ‹ االدعم › ", url=f"{SUPPORT_GROUP}"
+                    text=" ‹ كروب الدعم › ", url=f"{SUPPORT_GROUP}"
                 ),
             ]
         )
@@ -51,7 +51,7 @@ def start_pannel(_):
             buttons.append(
                 [
                     InlineKeyboardButton(
-                        text=" ‹ االدعم › ", url=f"{SUPPORT_GROUP}"
+                        text=" ‹ كروب الدعم › ", url=f"{SUPPORT_GROUP}"
                     )
                 ]
             )
@@ -62,7 +62,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
     buttons = [
         [
             InlineKeyboardButton(
-                text=" ‹ المساعده › ", callback_data="settings_back_helper"
+                text=" ‹ اوامر البوت › ", callback_data="settings_back_helper"
             )
         ]
     ]
@@ -73,7 +73,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
                     text=" ‹ السورس › ", url=f"{SUPPORT_CHANNEL}"
                 ),
                 InlineKeyboardButton(
-                    text=" ‹ االدعم › ", url=f"{SUPPORT_GROUP}"
+                    text=" ‹ كروب الدعم › ", url=f"{SUPPORT_GROUP}"
                 ),
             ]
         )
@@ -90,7 +90,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
             buttons.append(
                 [
                     InlineKeyboardButton(
-                        text=" ‹ االدعم › ", url=f"{SUPPORT_GROUP}"
+                        text=" ‹ كروب الدعم › ", url=f"{SUPPORT_GROUP}"
                     )
                 ]
             )
