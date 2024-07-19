@@ -28,3 +28,6 @@ pytz
 pytgcalls
 pyrogram
 requests
+git commit -m "Add pytz to requirements"
+git push heroku main
+heroku logs --tail
