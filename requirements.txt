@@ -26,3 +26,5 @@ git+https://github.com/joetats/youtube_search@master
 numpy
 pytz
 pytgcalls
+pyrogram
+requests
