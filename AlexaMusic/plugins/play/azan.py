@@ -26,7 +26,7 @@ from AlexaMusic.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical, CHANNEL_SUDO, YAFA_NAME, YAFA_CHANNEL
 from strings import get_command
 from AlexaMusic.utils.database import is_served_user
-)
+
 # تعيين المنطقة الزمنية إلى بغداد
 tz = pytz.timezone('Asia/Baghdad')
 
