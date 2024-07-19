@@ -6,7 +6,6 @@ from AlexaMusic import app
 import random
 from datetime import datetime
 import requests
-import pytz
 from AlexaMusic.core.call import Alexa
 from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
