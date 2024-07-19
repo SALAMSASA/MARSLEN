@@ -24,10 +24,3 @@ yt-dlp
 git+https://github.com/alexmercerind/youtube-search-python@main
 git+https://github.com/joetats/youtube_search@master
 numpy
-pytz
-pytgcalls
-pyrogram
-requests
-git commit -m "Add pytz to requirements"
-git push heroku main
-heroku logs --tail
