@@ -36,38 +36,21 @@ async def stop_music(cli, message: Message, _, chat_id):
     )
 
 
-@app.on_message(
-    filters.command(["end", "stop", "cend", "cstop"]) & filters.channel & ~BANNED_USERS
-)
-@app.on_message(
-filters.command(STOP_COMMAND,"")
-    & ~BANNED_USERS)
-@AdminRightsCheck
-async def stop_music(cli, message: Message):
-    try:
-        await message.delete()
-    except:
-        pass
 
-    try:
-        language = await get_lang(message.chat.id)
-        _ = get_string(language)
-    except:
-        _ = get_string("en")
-    if message.command[0][0] == "c":
-        chat_id = await get_cmode(message.chat.id)
-        if chat_id is None:
-            return await message.reply_text(_["setting_7"])
-        try:
-            await app.get_chat(chat_id)
-        except:
-            return await message.reply_text(_["cplay_4"])
-    else:
-        chat_id = message.chat.id
+@app.on_message(command(["ايقاف", "انهاء"])
+    & filters.channel
+    & ~BANNED_USERS
+)
+async def stop_music_ch(cli, message: Message):
     if not len(message.command) == 1:
-        return
-    await Mody.stop_stream(chat_id)
+        return await message.reply_text("هناك خطأ في الأمر العام")
+    chat_id = message.chat.id  # استخدم معرف الدردشة من الرسالة
+    await Alexa.stop_stream(chat_id)
     await set_loop(chat_id, 0)
+    if message.sender_chat:
+        mention = f"<a href=tg://user?id={message.chat.id}>{message.chat.title}</a>"
+    else:
+        mention = message.from_user.mention
     await message.reply_text(
-        _["admin_5"].format((message.from_user.mention if message.from_user else message.chat.title)), reply_markup=close_markup(_)
+        "تم إيقاف الموسيقى من قبل {}".format(mention)
     )
