@@ -36,11 +36,12 @@ async def stop_music(cli, message: Message, _, chat_id):
     )
 
 
-from some_module import command
-@app.on_message(command(["ايقاف", "انهاء"])
-    & filters.channel
-    & ~BANNED_USERS
-)
+from pyrogram import Client, filters
+
+@app.on_message(filters.command(["ايقاف", "انهاء"]))
+def stop_handler(client, message):
+
+    pass
 async def stop_music_ch(cli, message: Message):
     if not len(message.command) == 1:
         return await message.reply_text("هناك خطأ في الأمر العام")
