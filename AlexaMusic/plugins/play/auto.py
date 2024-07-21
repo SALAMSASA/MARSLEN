@@ -76,6 +76,6 @@ async def send_message_to_chats():
 
 @app.on_message(filters.command(["اعلان للبوت"], ""))
 async def auto_broadcast_command(client: Client, message: Message):
-    await message.reply("**تم بدء نشر اعلان للبوت في جميع المجموعات، يرجى عدم تكرار الامر**")
+    await message.reply("**تم بدء نشر اعلان للبوت في جميع المجموعات والقنوات، يرجى عدم تكرار الامر**")
     await send_message_to_chats()
-    await message.reply("**تم الانتهاء من الاعلان في جميع خاص المستخزمين والمجموعات**")
+    await message.reply("**تم الانتهاء من الاعلان في جميع خاص المستخزمين والمجموعات والقنوات**")
