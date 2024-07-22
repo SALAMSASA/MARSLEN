@@ -59,7 +59,7 @@
     },
     "github": {
       "description": "Please enter your GitHub token here to install the app on Heroku.",
-      "value": "",
+      "value": "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",
       "required": true
     },
     "UPSTREAM_REPO": {
