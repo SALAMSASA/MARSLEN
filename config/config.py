@@ -54,7 +54,7 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
 UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/Familysga/MARSLEN")
 
-heroku config:set GITHUB_TOKEN=your_personal_access_token
+GITHUB_TOKEN = getenv("GITHUB_TOKEN", "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") 
 
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 
