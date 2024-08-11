@@ -1,8 +1,8 @@
 {
-  "name": "Alexa1 Music",
-  "description": "Deploy Alexa music on Railway. Make sure to star the project.",
-  "logo": "https://telegra.ph/file/ba967503682a55beaedd3.png",
-  "keywords": [
+    "name": "Alexa Music",
+    "description": "Deploy Alexa music on railwey make sure to star the projecte.",
+    "logo": "https://telegra.ph/file/ba967503682a55beaedd3.png",
+    "keywords": [
     "python3",
     "telegram",
     "bot",
@@ -10,76 +10,71 @@
     "alexamusic",
     "alexamusicbot",
     "pyrogram"
-  ],
-  "env": {
-    "API_ID": {
-      "description": "Get this value from https://my.telegram.org",
-      "value": "",
-      "required": true
+    ],
+    "env": {
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "29400566",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "8fd30dc496aea7c14cf675f59b74ec6f",
+        "required": true
+      },
+      "BOT_TOKEN": {
+        "description": "A Bot's token from Botfather",
+        "value": "",
+        "required": true
+      },
+      "OWNER_ID": {
+        "description": "The user id(s) of user(s) whom you would like to add as a OWNER. Multiple values shall be seperated with a space.",
+        "value": "5303133436",
+        "required": true
+      },        
+      "MONGO_DB_URI": {
+        "description": "Mongo DB URL",
+        "value": "",
+        "required": true
+      },
+      "MUSIC_BOT_NAME": {
+        "description": "A name for your Music Bot.",
+        "value": "",
+        "required": true
+      },
+      "STRING_SESSION": {
+        "description": "A Pyrogram Session Get It From  Here @Session_Generator_Robot.",
+        "value": "",
+        "required": true
+      },
+      "HEROKU_API_KEY": {
+        "description": "Your Heroku account's API key",
+        "value": "",
+        "required": false
+      },
+      "HEROKU_APP_NAME": {
+        "description": "Your heroku app name",
+        "value": "",
+        "required": false
+      },
+      "UPSTREAM_REPO": {
+        "description": "If you dont know this, Leave as it is",
+        "value": "https://github.com/TheTeamAlexa/AlexaMusic",
+        "required": true
+      },
+      "LOG_GROUP_ID": {
+        "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Use only Group. Please don't use Channel ID.",
+        "value": "",
+        "required": true
+      }
     },
-    "API_HASH": {
-      "description": "Get this value from https://my.telegram.org",
-      "value": "",
-      "required": true
-    },
-    "BOT_TOKEN": {
-      "description": "A bot's token from Botfather",
-      "value": "",
-      "required": true
-    },
-    "OWNER_ID": {
-      "description": "The user ID(s) of user(s) whom you would like to add as an owner. Multiple values should be separated with a space.",
-      "value": "5303133436",
-      "required": true
-    },
-    "MONGO_DB_URI": {
-      "description": "MongoDB URL",
-      "value": "",
-      "required": true
-    },
-    "MUSIC_BOT_NAME": {
-      "description": "A name for your music bot.",
-      "value": "",
-      "required": true
-    },
-    "STRING_SESSION": {
-      "description": "A Pyrogram session. Get it from here: @Session_Generator_Robot.",
-      "value": "",
-      "required": true
-    },
-    "HEROKU_API_KEY": {
-      "description": "Your Heroku account's API key",
-      "value": "",
-      "required": false
-    },
-    "HEROKU_APP_NAME": {
-      "description": "Your Heroku app name",
-      "value": "",
-      "required": false
-    },
-    "github": {
-      "description": "Please enter your GitHub token here to install the app on Heroku.",
-      "value": "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",
-      "required": true
-    },
-    "UPSTREAM_REPO": {
-      "description": "If you don't know this, leave it as it is",
-      "value": "https://github.com/TheTeamAlexa/AlexaMusic",
-      "required": true
-    },
-    "LOG_GROUP_ID": {
-      "description": "Your log group ID. Add your bot and promote it as an admin with full rights! Use only a group. Please don't use a channel ID.",
-      "value": "",
-      "required": true
-    }
-  },
-  "buildpacks": [
-    {
-      "url": "heroku/python"
-    },
-    {
-      "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview.git"
-    }
-  ],
-  "stack": "container"
-}
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "https://github.com/heroku/heroku-buildpack-activestorage-preview.git"
+          }
+      ],
+      "stack": "container"
+  }
