@@ -34,7 +34,7 @@ def start_pannel(_):
                     text=" ‹ السورس › ", url=f"{SUPPORT_CHANNEL}"
                 ),
                 InlineKeyboardButton(
-                    text=" ‹ كروب الدعم › ", url=f"{SUPPORT_GROUP}"
+                    text=" ‹ قناة البوت › ", url=f"{SUPPORT_GROUP}"
                 ),
             ]
         )
@@ -51,7 +51,7 @@ def start_pannel(_):
             buttons.append(
                 [
                     InlineKeyboardButton(
-                        text=" ‹ كروب الدعم › ", url=f"{SUPPORT_GROUP}"
+                        text=" ‹ قناة البوت › ", url=f"{SUPPORT_GROUP}"
                     )
                 ]
             )
@@ -73,7 +73,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
                     text=" ‹ السورس › ", url=f"{SUPPORT_CHANNEL}"
                 ),
                 InlineKeyboardButton(
-                    text=" ‹ كروب الدعم › ", url=f"{SUPPORT_GROUP}"
+                    text=" ‹ قناة البوت › ", url=f"{SUPPORT_GROUP}"
                 ),
             ]
         )
@@ -90,7 +90,7 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
             buttons.append(
                 [
                     InlineKeyboardButton(
-                        text=" ‹ كروب الدعم › ", url=f"{SUPPORT_GROUP}"
+                        text=" ‹ قناة البوت › ", url=f"{SUPPORT_GROUP}"
                     )
                 ]
             )
