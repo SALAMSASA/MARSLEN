@@ -12,9 +12,10 @@ as you want or you can collabe if you have new ideas.
 
 from AlexaMusic.core.bot import AlexaBot
 from AlexaMusic.core.dir import dirr
+from AlexaMusic.core.cookies import save_cookies
 from AlexaMusic.core.git import git
 from AlexaMusic.core.userbot import Userbot
-from AlexaMusic.misc import dbb, heroku, sudo
+from AlexaMusic.misc import dbb, heroku
 
 from .logging import LOGGER
 
@@ -30,8 +31,8 @@ dbb()
 # Heroku APP
 heroku()
 
-# Load Sudo Users from DB
-sudo()
+# Cookies
+save_cookies()
 
 # Bot Client
 app = AlexaBot()
@@ -48,4 +49,3 @@ Apple = AppleAPI()
 Resso = RessoAPI()
 SoundCloud = SoundAPI()
 Telegram = TeleAPI()
-KSK = KSKOP()
