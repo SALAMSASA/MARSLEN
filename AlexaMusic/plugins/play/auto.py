@@ -23,7 +23,6 @@ from AlexaMusic.utils.inline.play import (
 from AlexaMusic.utils.inline.playlist import botplaylist_markup
 from AlexaMusic.utils.logger import play_logs
 from AlexaMusic.utils.stream.stream import stream
-from config import BANNED_USERS, lyrical, CHANNEL_SUDO, YAFA_NAME, YAFA_CHANNEL
 from strings import get_command, get_string
 from AlexaMusic.misc import SUDOERS
 from AlexaMusic.plugins.play.playlist import del_plist_msg
