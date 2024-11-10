@@ -76,13 +76,9 @@ async def clean_mode(client, update, users, chats):
     await set_queries(1)
 
 
-@app.on_message(filters.command(BROADCAST_COMMAND))
+@app.on_message(filters.command(BROADCAST_COMMAND) & SUDOERS)
 @language
 async def braodcast_message(client, message, _):
-    if message.from_user.id not in OWNER_ID:
-        return await message.reply_text(
-            "» **😁 ʜᴇʜᴇʜᴇ ᴏɴʟʏ ᴍʏ ᴏᴡɴᴇʀ ᴄᴀɴ ʙʀᴏᴀᴅᴄᴀsᴛ**\n» 🤫  ᴊᴏɪɴ @A1DIIU ғᴏʀ ᴘʀᴏᴍᴏᴛɪᴏɴ"
-        )
     global IS_BROADCASTING
     if message.reply_to_message:
         x = message.reply_to_message.id
@@ -110,10 +106,8 @@ async def braodcast_message(client, message, _):
     if "-nobot" not in message.text:
         sent = 0
         pin = 0
-        chats = []
         schats = await get_served_chats()
-        for chat in schats:
-            chats.append(int(chat["chat_id"]))
+        chats = [int(chat["chat_id"]) for chat in schats]
         for i in chats:
             if i == config.LOG_GROUP_ID:
                 continue
@@ -137,7 +131,7 @@ async def braodcast_message(client, message, _):
                         continue
                 sent += 1
             except FloodWait as e:
-                flood_time = int(e.x)
+                flood_time = int(e.value)
                 if flood_time > 200:
                     continue
                 await asyncio.sleep(flood_time)
@@ -151,10 +145,8 @@ async def braodcast_message(client, message, _):
     # Bot broadcasting to users
     if "-user" in message.text:
         susr = 0
-        served_users = []
         susers = await get_served_users()
-        for user in susers:
-            served_users.append(int(user["user_id"]))
+        served_users = [int(user["user_id"]) for user in susers]
         for i in served_users:
             try:
                 m = (
@@ -164,7 +156,7 @@ async def braodcast_message(client, message, _):
                 )
                 susr += 1
             except FloodWait as e:
-                flood_time = int(e.x)
+                flood_time = int(e.value)
                 if flood_time > 200:
                     continue
                 await asyncio.sleep(flood_time)
@@ -195,7 +187,7 @@ async def braodcast_message(client, message, _):
                     )
                     sent += 1
                 except FloodWait as e:
-                    flood_time = int(e.x)
+                    flood_time = int(e.value)
                     if flood_time > 200:
                         continue
                     await asyncio.sleep(flood_time)
@@ -222,12 +214,10 @@ async def auto_clean():
                     if spot:
                         spot = spot["spot"]
                         next_spot = spot + 1
-                        new_spot = {"spot": next_spot, "title": title}
-                        await update_particular_top(chat_id, vidid, new_spot)
                     else:
                         next_spot = 1
-                        new_spot = {"spot": next_spot, "title": title}
-                        await update_particular_top(chat_id, vidid, new_spot)
+                    new_spot = {"spot": next_spot, "title": title}
+                    await update_particular_top(chat_id, vidid, new_spot)
             for user_id in userstats:
                 for dic in userstats[user_id]:
                     vidid = dic["vidid"]
@@ -237,12 +227,10 @@ async def auto_clean():
                     if spot:
                         spot = spot["spot"]
                         next_spot = spot + 1
-                        new_spot = {"spot": next_spot, "title": title}
-                        await update_user_top(user_id, vidid, new_spot)
                     else:
                         next_spot = 1
-                        new_spot = {"spot": next_spot, "title": title}
-                        await update_user_top(user_id, vidid, new_spot)
+                    new_spot = {"spot": next_spot, "title": title}
+                    await update_user_top(user_id, vidid, new_spot)
         except:
             continue
         try:
@@ -250,14 +238,13 @@ async def auto_clean():
                 if chat_id == config.LOG_GROUP_ID:
                     continue
                 for x in clean[chat_id]:
-                    if datetime.now() > x["timer_after"]:
-                        try:
-                            await app.delete_messages(chat_id, x["msg_id"])
-                        except FloodWait as e:
-                            await asyncio.sleep(e.x)
-                        except:
-                            continue
-                    else:
+                    if datetime.now() <= x["timer_after"]:
+                        continue
+                    try:
+                        await app.delete_messages(chat_id, x["msg_id"])
+                    except FloodWait as e:
+                        await asyncio.sleep(e.value)
+                    except:
                         continue
         except:
             continue
