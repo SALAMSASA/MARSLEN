@@ -33,18 +33,7 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", ""))
 
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME")
 
-OWNER_ID = list(map(int, getenv("OWNER_ID", "7004732448 7004732448").split()))
-
-CHANNEL_SUDO = getenv(
-    "CHANNEL_SUDO", "L_Q7I"
-)  # ???? ????? ???? @
-YAFA_NAME = getenv(
-    "YAFA_NAME", "سُــــتِۅࢪيُــاެتِ •𓋾𖥆"
-)  # ??? ?????
-YAFA_CHANNEL = getenv(
-   " YAFA_CHANNEL", "https://t.me/L_Q7I"
-)  # ???? ?????
-# ???? ?????
+OWNER_ID = int(getenv("OWNER_ID", None))
 
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
@@ -60,7 +49,7 @@ GIT_TOKEN = getenv("GIT_TOKEN", None)
 
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/A1DIIU")
 
-SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/L_Q7I")
+SUPPORT_GROUP = getenv("SUPPORT_GROUP", "https://t.me/ll0llld")
 
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False")
 
@@ -97,6 +86,9 @@ TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", "104857600"))
 TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "1073741824"))
 # https://www.gbmb.org/mb-to-bytes
 
+COOKIES = getenv("COOKIES", None)
+# https://batbin.me
+
 STRING1 = getenv("STRING_SESSION", None)
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
@@ -116,67 +108,67 @@ clean = {}
 autoclean = []
 
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://telegra.ph/file/e98db958e796347fb7d4b.jpg"
+    "START_IMG_URL", "https://telegra.ph/file/d593c6064ff7657d0c714.jpg"
 )
 
 PING_IMG_URL = getenv(
     "PING_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/Ping.jpeg",
 )
 
 PLAYLIST_IMG_URL = getenv(
     "PLAYLIST_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/Playlist.jpeg",
 )
 
 GLOBAL_IMG_URL = getenv(
     "GLOBAL_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/Global.jpeg",
 )
 
 STATS_IMG_URL = getenv(
     "STATS_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/Stats.jpeg",
 )
 
 TELEGRAM_AUDIO_URL = getenv(
     "TELEGRAM_AUDIO_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/Audio.jpeg",
 )
 
 TELEGRAM_VIDEO_URL = getenv(
     "TELEGRAM_VIDEO_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/Video.jpeg",
 )
 
 STREAM_IMG_URL = getenv(
     "STREAM_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpgg",
+    "assets/Stream.jpeg",
 )
 
 SOUNCLOUD_IMG_URL = getenv(
     "SOUNCLOUD_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/Soundcloud.jpeg",
 )
 
 YOUTUBE_IMG_URL = getenv(
     "YOUTUBE_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/Youtube.jpeg",
 )
 
 SPOTIFY_ARTIST_IMG_URL = getenv(
     "SPOTIFY_ARTIST_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/SpotifyArtist.jpeg",
 )
 
 SPOTIFY_ALBUM_IMG_URL = getenv(
     "SPOTIFY_ALBUM_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/SpotifyAlbum.jpeg",
 )
 
 SPOTIFY_PLAYLIST_IMG_URL = getenv(
     "SPOTIFY_PLAYLIST_IMG_URL",
-    "https://telegra.ph/file/75737308889fade2c982a.jpg",
+    "assets/SpotifyPlaylist.jpeg",
 )
 
 
