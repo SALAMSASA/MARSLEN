@@ -33,7 +33,18 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", ""))
 
 MUSIC_BOT_NAME = getenv("MUSIC_BOT_NAME")
 
-OWNER_ID = int(getenv("OWNER_ID", None))
+OWNER_ID = list(map(int, getenv("OWNER_ID", "7004732448 7004732448").split()))
+
+CHANNEL_SUDO = getenv(
+    "CHANNEL_SUDO", "A1DIIU"
+)  # ???? ????? ???? @
+YAFA_NAME = getenv(
+    "YAFA_NAME", "ستوريات"
+)  # ??? ?????
+YAFA_CHANNEL = getenv(
+   " YAFA_CHANNEL", "https://t.me/"
+)  # ???? ?????
+# ???? ?????
 
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
