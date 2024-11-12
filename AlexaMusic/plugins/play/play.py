@@ -37,16 +37,6 @@ from AlexaMusic.utils.stream.stream import stream
 from config import BANNED_USERS, lyrical
 from strings import get_command
 from AlexaMusic.utils.database import is_served_user
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-force_btn = InlineKeyboardMarkup(
-    [
-        [
-            InlineKeyboardButton(   
-              text=f"{YAFA_NAME}", url=f"{YAFA_CHANNEL}",)                        
-        ],        
-    ]
-)
-
 async def check_is_joined(message):    
     try:
         userid = message.from_user.id
